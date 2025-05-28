@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fórmula da Água</title>
+  <!-- Fonte minimalista: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg,#173056 0%,#00344A 100%);
+      color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 48px 16px 16px;
+    }
+    header img {
+      max-width: 260px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: #FBCD5C;
+      margin: 16px 0 8px;
+      font-weight: 700;
+    }
+    p.subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      opacity: 0.85;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    nav {
+      margin: 24px 0;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    button.tab {
+      background: #18425A;
+      color: #FBCD5C;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button.tab:hover, button.tab.active {
+      background: #FBCD5C;
+      color: #173056;
+    }
+    .tab-content {
+      display: none;
+      max-width: 800px;
+      padding: 20px;
+      background: rgba(15,26,41,0.9);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      margin-bottom: 32px;
+    }
+    .tab-content.show {
+      display: block;
+    }
+    .tab-content h2 {
+      color: #FBCD5C;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .tab-content p, .tab-content ul {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .tab-content ul li {
+      margin-left: 20px;
+      list-style-type: disc;
+    }
+    a.contact {
+      display: inline-block;
+      margin: 16px auto;
+      padding: 10px 24px;
+      background: #FBCD5C;
+      color: #173056;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer {
+      margin-top: auto;
+      padding: 16px;
+      font-size: 0.85rem;
+      color: #ccc;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      p.subtitle { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-v1dkgJVdxnQvOx8bg24gP2oI/user-wztjvcOvBRJdTtV0QHk9Qo3R/img-3eQ4iQoExW0A9gJx3JTr1rRm.png" alt="Capa do livro" />
+    <h1>Fórmula da Água</h1>
+    <p class="subtitle">História de poder e verdades esquecidas que moldarão o futuro de Norrvind.</p>
+  </header>
+  <nav>
+    <button class="tab active" data-target="resumo">Resumo</button>
+    <button class="tab" data-target="curiosidades">Curiosidades</button>
+    <button class="tab" data-target="personagens">Personagens</button>
+    <button class="tab" data-target="autor">Autor</button>
+  </nav>
+  <section id="resumo" class="tab-content show">
+    <h2>Resumo</h2>
+    <p>Eira, com memórias roubadas ainda na infância, sofre um acidente de raio que desperta fragmentos do seu passado. Em busca da verdade, ela enfrenta seu pai, Bjørn, criador das caixas Skyrva, e a entida‌de Nýrkath, que manipula memórias. Numa jornada profunda, água e lembrança se entrelaçam em uma fábula sobre identidade e redenção.</p>
+  </section>
+  <section id="curiosidades" class="tab-content">
+    <h2>Curiosidades</h2>
+    <ul>
+      <li>Título alude ao rio Lethe da mitologia grega, responsável por apagar memórias.</li>
+      <li>Quatro elementos: Água (Eira), Terra (Kael), Fogo (Bjørn), Ar (Værdrar).</li>
+      <li>Capa utiliza tons de azul profundo e dourado para representar luz sobre sombras.</li>
+    </ul>
+  </section>
+  <section id="personagens" class="tab-content">
+    <h2>Personagens</h2>
+    <p><strong>Eira:</strong> Protagonista sensível, corajosa e marcada pelo esquecimento.</p>
+    <p><strong>Kael:</strong> Jovem impulsivo, sobrevivente de um povo apagado.</p>
+    <p><strong>Bjørn:</strong> Pai manipulador, sacrificado pela redenção.</p>
+  </section>
+  <section id="autor" class="tab-content">
+    <h2>Sobre o autor</h2>
+    <p><strong>Marlon Cruz</strong> escreve histórias que exploram memória, mitologia e a luz escondida em cada sombra. Inspirado pelo vento e pelo silêncio das montanhas, Ele acredita que lembrar é um ato de coragem.</p>
+  </section>
+  <a class="contact" href="mailto:seudominio@email.com">Entre em contato</a>
+  <footer>&copy; 2025 Marlon Cruz. Todos os direitos reservados.</footer>
+  <script>
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(sec => sec.classList.remove('show'));
+        document.getElementById(btn.dataset.target).classList.add('show');
+      });
+    });
+  </script>
+</body>
+</html>
