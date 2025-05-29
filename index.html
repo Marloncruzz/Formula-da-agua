@@ -3,9 +3,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fórmula da Água</title>
-  <!-- Fonte minimalista: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -15,6 +15,7 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      overflow-x: hidden;
     }
     header {
       text-align: center;
@@ -22,9 +23,13 @@
     }
     header img {
       max-width: 260px;
+      width: 80%;
+      height: auto;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
     }
+    header img:hover { transform: scale(1.02); }
     h1 {
       font-size: 2.2rem;
       color: #FBCD5C;
@@ -36,7 +41,44 @@
       font-weight: 300;
       opacity: 0.85;
       max-width: 400px;
-      margin: 0 auto;
+      margin: 0 auto 24px;
+    }
+    .start-button,
+    .contact-header {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      background: #FBCD5C;
+      color: #173056;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 24px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin: 8px 8px 0;
+      min-width: 160px;
+      text-align: center;
+    }
+    .start-button:hover,
+    .contact-header:hover {
+      background: #eac142;
+      transform: scale(1.05);
+    }
+    .main-content {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.8s ease, max-height 1.2s ease;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .main-content.active {
+      opacity: 1;
+      max-height: 2000px;
     }
     nav {
       margin: 24px 0;
@@ -46,37 +88,44 @@
       justify-content: center;
     }
     button.tab {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
       background: #18425A;
       color: #FBCD5C;
       border: none;
       border-radius: 20px;
       padding: 8px 18px;
-      font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.3s ease;
     }
-    button.tab:hover, button.tab.active {
+    button.tab:hover,
+    button.tab.active {
       background: #FBCD5C;
       color: #173056;
     }
     .tab-content {
       display: none;
+      width: 90%;
       max-width: 800px;
       padding: 20px;
       background: rgba(15,26,41,0.9);
       border-radius: 12px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.4);
       margin-bottom: 32px;
+      transition: opacity 0.4s ease;
     }
     .tab-content.show {
       display: block;
+      opacity: 1;
     }
     .tab-content h2 {
       color: #FBCD5C;
       font-weight: 600;
       margin-bottom: 12px;
     }
-    .tab-content p, .tab-content ul {
+    .tab-content p,
+    .tab-content ul {
+      font-family: 'Inter', sans-serif;
       font-size: 1rem;
       line-height: 1.6;
       margin-bottom: 12px;
@@ -85,26 +134,28 @@
       margin-left: 20px;
       list-style-type: disc;
     }
-    a.contact {
-      display: inline-block;
-      margin: 16px auto;
-      padding: 10px 24px;
-      background: #FBCD5C;
-      color: #173056;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-    }
     footer {
       margin-top: auto;
       padding: 16px;
+      font-family: 'Inter', sans-serif;
       font-size: 0.85rem;
       color: #ccc;
       text-align: center;
     }
+    @media (max-width: 900px) {
+      nav { flex-direction: column; gap: 8px; }
+    }
     @media (max-width: 600px) {
       h1 { font-size: 1.8rem; }
       p.subtitle { font-size: 0.9rem; }
+      header { padding: 32px 8px 8px; }
+      .tab-content { padding: 16px; }
+      button.tab,
+      .start-button,
+      .contact-header {
+        width: 100%;
+        max-width: 300px;
+      }
     }
   </style>
 </head>
@@ -113,48 +164,56 @@
     <img src="capa.png.png" alt="Capa do livro" />
     <h1>Fórmula da Água</h1>
     <p class="subtitle">História de poder e verdades esquecidas que moldarão o futuro de Norrvind.</p>
+    <button class="start-button" onclick="toggleConteudo()">Saiba mais</button>
+    <button class="contact-header" onclick="window.location='mailto:imarloncruzz2018@Gmail.com'">Entre em contato</button>
   </header>
-  <nav>
-    <button class="tab active" data-target="resumo">Resumo</button>
-    <button class="tab" data-target="curiosidades">Curiosidades</button>
-    <button class="tab" data-target="personagens">Personagens</button>
-    <button class="tab" data-target="autor">Autor</button>
-  </nav>
-  <section id="resumo" class="tab-content show">
-    <h2>Resumo</h2>
-    <p>Há lembranças que se escondem tão fundo que parecem nunca ter existido.
-Mas e se alguém tivesse colocado elas lá?
-
-Em um mundo onde a memória é sagrada, o passado de uma pessoa foi selado sob camadas de silêncio, culpa e medo.
-O que começa como um eco dentro da mente se transforma numa jornada contra tudo que foi esquecido — e contra quem decidiu esquecer por ela.
-
-Entre ruínas antigas, crenças quebradas e verdades afogadas, a busca por si mesma se torna mais do que um retorno: é um confronto.</p>
-  </section>
-  <section id="curiosidades" class="tab-content">
-    <h2>Curiosidades</h2>
-    <ul>
-      <li>Título alude ao rio Lethe da mitologia grega, responsável por apagar memórias.</li>
-      <li>Quatro elementos: Água (Eira), Terra (Kael), Fogo (Bjørn), Ar (Værdrar).</li>
-      <li>Capa utiliza tons de azul profundo e dourado para representar luz sobre sombras.</li>
-    </ul>
-  </section>
-  <section id="personagens" class="tab-content">
-    <h2>Personagens</h2>
-    <p><strong>Eira:</strong> Protagonista sensível, corajosa e marcada pelo esquecimento.</p>
-    <p><strong>Kael:</strong> Jovem impulsivo, sobrevivente de um povo apagado.</p>
-    <p><strong>Bjørn:</strong> Pai manipulador, sacrificado pela redenção.</p>
-  </section>
-  <section id="autor" class="tab-content">
-    <h2>Sobre o autor</h2>
-    <p><strong>Marlon Cruz</strong> - Oi! Eu sou só um cara comum que resolveu escrever um livro nada comum.
-Fórmula da Água nasceu de uma ideia maluca que virou projeto, depois virou obsessão... e agora tá virando realidade.
-
-Não sou escritor profissional, mas me joguei de cabeça nessa história. Literalmente.
-Tô descobrindo aos poucos o que é criar um universo, dar voz pra personagens e lutar contra o famoso bloqueio criativo (e contra o sono também).</p>
-  </section>
-  <a class="contact" href="mailto:imarloncruzz2018@Gmail.com">Entre em contato</a>
-  <footer>&copy; 2025 Marlon Cruz. Todos os direitos reservados.</footer>
+  <div class="main-content" id="conteudo">
+    <nav>
+      <button class="tab active" data-target="resumo">Resumo</button>
+      <button class="tab" data-target="curiosidades">Curiosidades</button>
+      <button class="tab" data-target="personagens">Personagens</button>
+      <button class="tab" data-target="autor">Autor</button>
+    </nav>
+    <section id="resumo" class="tab-content show">
+      <h2>Resumo</h2>
+      <p>Há lembranças que se escondem tão fundo que parecem nunca ter existido. Mas e se alguém tivesse colocado elas lá? Em um mundo onde a memória é sagrada, o passado de uma pessoa foi selado sob camadas de silêncio, culpa e medo. O que começa como um eco dentro da mente se transforma numa jornada contra tudo que foi esquecido — e contra quem decidiu esquecer por ela. Entre ruínas antigas, crenças quebradas e verdades afogadas, a busca por si mesma se torna mais do que um retorno: é um confronto.</p>
+    </section>
+    <section id="curiosidades" class="tab-content">
+      <h2>Curiosidades</h2>
+      <ul>
+        <li>Título alude ao rio Lethe da mitologia grega, responsável por apagar memórias.</li>
+        <li>Quatro elementos: Água (Eira), Terra (Kael), Fogo (Bjørn), Ar (Værdrar).</li>
+        <li>Capa utiliza tons de azul profundo e dourado para representar luz sobre sombras.</li>
+      </ul>
+    </section>
+    <section id="personagens" class="tab-content">
+      <h2>Personagens</h2>
+      <p><strong>Eira:</strong> Protagonista sensível, corajosa e marcada pelo esquecimento.</p>
+      <p><strong>Kael:</strong> Jovem impulsivo, sobrevivente de um povo apagado.</p>
+      <p><strong>Bjørn:</strong> Pai manipulador, sacrificado pela redenção.</p>
+    </section>
+    <section id="autor" class="tab-content">
+      <h2>Sobre o autor</h2>
+      <p><strong>Marlon Cruz</strong> - Oi! Eu sou só um cara comum que resolveu escrever um livro nada comum. Fórmula da Água nasceu de uma ideia maluca que virou projeto, depois virou obsessão... e agora tá virando realidade. Não sou escritor profissional, mas me joguei de cabeça nessa história. Literalmente. Tô descobrindo aos poucos o que é criar um universo, dar voz pra personagens e lutar contra o famoso bloqueio criativo (e contra o sono também).</p>
+    </section>
+  </div>
+  <footer>
+    &copy; 2025 Marlon Cruz. Todos os direitos reservados. | Projeto em desenvolvimento.
+  </footer>
   <script>
+    function toggleConteudo() {
+      const conteudo = document.getElementById('conteudo');
+      if (conteudo.classList.contains('active')) {
+        conteudo.classList.remove('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        conteudo.classList.add('active');
+        setTimeout(() => {
+          const topPos = conteudo.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: topPos, behavior: 'smooth' });
+        }, 100);
+      }
+    }
     document.querySelectorAll('.tab').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
